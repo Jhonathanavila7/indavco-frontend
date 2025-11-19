@@ -29,7 +29,7 @@ export const servicesAPI = {
 
 export const projectsAPI = {
   getAll: () => api.get('/projects'),
-  getOne: (id) => api.get(`/projects/${id}`),  // ← AGREGAR ESTO
+  getOne: (id) => api.get(`/projects/${id}`),  // ← ESTA LÍNEA DEBE ESTAR
   create: (data) => api.post('/projects', data),
   update: (id, data) => api.put(`/projects/${id}`, data),
   delete: (id) => api.delete(`/projects/${id}`),
