@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { servicesAPI, projectsAPI, clientsAPI } from '../services/api';
+const API_BASE = 'https://indavco-backend.onrender.com';
 
 
 const Home = () => {
@@ -243,7 +244,7 @@ const Home = () => {
         </div>
       </section>
   
-const API_BASE = 'https://indavco-backend.onrender.com';
+
 {/* Nuestros Clientes */}
 {clients.length > 0 && (
   <section className="py-16 bg-gray-50">
