@@ -149,7 +149,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-300 text-sm">
-              © {new Date().getFullYear()} Indavco Systems. Todos los derechos reservados.
+              © {new Date().getFullYear()} Indavco Systems. Todos los derechos reservados. @Jhonathan Avila
             </p>
             <div className="flex gap-6 text-sm">
               <Link to="/nosotros" className="text-gray-300 hover:text-white transition">
