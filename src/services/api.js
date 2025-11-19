@@ -33,6 +33,13 @@ export const clientsAPI = {
   update: (id, data) => api.put(`/clients/${id}`, data),
   delete: (id) => api.delete(`/clients/${id}`),
 };
+export const blogAPI = {
+  getAll: () => api.get('/posts'), // ⚠️ Verifica si en tu backend es '/posts' o '/blog'
+  getOne: (id) => api.get(`/posts/${id}`),
+  create: (data) => api.post('/posts', data),
+  update: (id, data) => api.put(`/posts/${id}`, data),
+  delete: (id) => api.delete(`/posts/${id}`),
+};
 
 // Exportación por defecto del objeto axios
 export default api;
