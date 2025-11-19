@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// 1. Usar la variable de entorno correcta para VITE
-const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+// URL base con /api incluido
+const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 const api = axios.create({
   baseURL: baseURL,
@@ -10,11 +10,21 @@ const api = axios.create({
   },
 });
 
-// 2. DEFINIR Y EXPORTAR LOS OBJETOS QUE PIDE TU HOME.JSX
-// (Aquí es donde estaba fallando el build)
+// Interceptor para agregar token de autenticación
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
+// APIs
 export const servicesAPI = {
-  getAll: () => api.get('/services'), // Ajusta '/services' a tu ruta real
+  getAll: () => api.get('/services'),
   create: (data) => api.post('/services', data),
   update: (id, data) => api.put(`/services/${id}`, data),
   delete: (id) => api.delete(`/services/${id}`),
@@ -33,19 +43,27 @@ export const clientsAPI = {
   update: (id, data) => api.put(`/clients/${id}`, data),
   delete: (id) => api.delete(`/clients/${id}`),
 };
+
 export const blogAPI = {
-  getAll: () => api.get('/posts'), // ⚠️ Verifica si en tu backend es '/posts' o '/blog'
-  getOne: (id) => api.get(`/posts/${id}`),
-  create: (data) => api.post('/posts', data),
-  update: (id, data) => api.put(`/posts/${id}`, data),
-  delete: (id) => api.delete(`/posts/${id}`),
+  getAll: (params) => api.get('/blog', { params }),
+  getBySlug: (slug) => api.get(`/blog/${slug}`),
+  create: (data) => api.post('/blog', data),
+  update: (id, data) => api.put(`/blog/${id}`, data),
+  delete: (id) => api.delete(`/blog/${id}`),
 };
+
 export const corporatePlansAPI = {
-  getAll: () => api.get('/corporate-plans'), // ⚠️ OJO: Verifica si en tu backend la ruta es '/corporate-plans' o solo '/plans'
+  getAll: () => api.get('/corporate-plans'),
   create: (data) => api.post('/corporate-plans', data),
   update: (id, data) => api.put(`/corporate-plans/${id}`, data),
   delete: (id) => api.delete(`/corporate-plans/${id}`),
 };
 
-// Exportación por defecto del objeto axios
+// Auth API
+export const authAPI = {
+  login: (credentials) => api.post('/auth/login', credentials),
+  register: (data) => api.post('/auth/register', data),
+  logout: () => api.post('/auth/logout'),
+};
+
 export default api;
