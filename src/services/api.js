@@ -40,6 +40,12 @@ export const blogAPI = {
   update: (id, data) => api.put(`/posts/${id}`, data),
   delete: (id) => api.delete(`/posts/${id}`),
 };
+export const corporatePlansAPI = {
+  getAll: () => api.get('/corporate-plans'), // ⚠️ OJO: Verifica si en tu backend la ruta es '/corporate-plans' o solo '/plans'
+  create: (data) => api.post('/corporate-plans', data),
+  update: (id, data) => api.put(`/corporate-plans/${id}`, data),
+  delete: (id) => api.delete(`/corporate-plans/${id}`),
+};
 
 // Exportación por defecto del objeto axios
 export default api;
