@@ -1,9 +1,6 @@
 import axios from 'axios';
 
-// URL base con /api incluido
 const baseURL = 'https://indavco-backend.onrender.com/api';
-// Ya NO uses la variable de entorno por ahora:
-// const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 const api = axios.create({
   baseURL: baseURL,
@@ -12,7 +9,6 @@ const api = axios.create({
   },
 });
 
-// Interceptor para agregar token de autenticación
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
@@ -24,7 +20,6 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// APIs
 export const servicesAPI = {
   getAll: () => api.get('/services'),
   create: (data) => api.post('/services', data),
@@ -48,7 +43,7 @@ export const clientsAPI = {
 
 export const blogAPI = {
   getAll: (params) => api.get('/blog', { params }),
-  getOne: (id) => api.get(`/blog/${id}`),  // ← Agregar esto
+  getOne: (id) => api.get(`/blog/${id}`),
   getBySlug: (slug) => api.get(`/blog/${slug}`),
   create: (data) => api.post('/blog', data),
   update: (id, data) => api.put(`/blog/${id}`, data),
@@ -62,7 +57,6 @@ export const corporatePlansAPI = {
   delete: (id) => api.delete(`/corporate-plans/${id}`),
 };
 
-// Auth API
 export const authAPI = {
   login: (credentials) => api.post('/auth/login', credentials),
   register: (data) => api.post('/auth/register', data),
