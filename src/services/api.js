@@ -48,6 +48,7 @@ export const clientsAPI = {
 
 export const blogAPI = {
   getAll: (params) => api.get('/blog', { params }),
+  getOne: (id) => api.get(`/blog/${id}`),  // ← Agregar esto
   getBySlug: (slug) => api.get(`/blog/${slug}`),
   create: (data) => api.post('/blog', data),
   update: (id, data) => api.put(`/blog/${id}`, data),
