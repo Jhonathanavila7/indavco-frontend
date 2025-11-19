@@ -1,9 +1,14 @@
 import axios from 'axios';
 
 // URL base con /api incluido
-const baseURL = 'https://indavco-backend.onrender.com/api'; // HARDCODEADO
-console.log('🔗 URL API:', baseURL);
-console.log('📦 Variable entorno:', import.meta.env.VITE_API_URL);
+const baseURL = 'https://indavco-backend.onrender.com/api';
+
+import axios from 'axios';
+
+
+
+// Ya NO uses la variable de entorno por ahora:
+// const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 const api = axios.create({
   baseURL: baseURL,
