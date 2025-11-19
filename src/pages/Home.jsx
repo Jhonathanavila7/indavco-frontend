@@ -242,7 +242,9 @@ const Home = () => {
           )}
         </div>
       </section>
-     {/* Nuestros Clientes */}
+  
+const API_BASE = 'https://indavco-backend.onrender.com';
+{/* Nuestros Clientes */}
 {clients.length > 0 && (
   <section className="py-16 bg-gray-50">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -250,32 +252,31 @@ const Home = () => {
         <h2 className="text-4xl font-bold text-secondary mb-4">Nuestros Clientes</h2>
         <p className="text-gray-600">Empresas que confían en nosotros</p>
       </div>
-
       {/* Carrusel infinito */}
-<div className="relative overflow-hidden flex justify-center">
-  <div className="flex gap-16 items-center justify-center" style={{
-    animation: 'scroll 30s linear infinite',
-    width: 'fit-content',
-    paddingLeft: '50%',
-    paddingRight: '50%'
-  }}>
-    {/* Duplicamos varias veces para efecto infinito */}
-    {[...clients, ...clients, ...clients, ...clients, ...clients, ...clients].map((client, index) => (
-      <div
-        key={`${client._id}-${index}`}
-        className="flex-shrink-0 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
-      >
-        <img
-          src={`http://localhost:5000${client.logo}`}
-          alt={client.name}
-          className="h-28 md:h-36 w-auto object-contain"
-          style={{ minWidth: '180px', maxWidth: '280px' }}
-          title={client.name}
-        />
+      <div className="relative overflow-hidden flex justify-center">
+        <div className="flex gap-16 items-center justify-center" style={{
+          animation: 'scroll 30s linear infinite',
+          width: 'fit-content',
+          paddingLeft: '50%',
+          paddingRight: '50%'
+        }}>
+          {/* Duplicamos varias veces para efecto infinito */}
+          {[...clients, ...clients, ...clients, ...clients, ...clients, ...clients].map((client, index) => (
+            <div
+              key={`${client._id}-${index}`}
+              className="flex-shrink-0 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 hover:scale-110"
+            >
+              <img
+                src={`${API_BASE}${client.logo}`}
+                alt={client.name}
+                className="h-28 md:h-36 w-auto object-contain"
+                style={{ minWidth: '180px', maxWidth: '280px' }}
+                title={client.name}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-    ))}
-  </div>
-</div>
     </div>
   </section>
 )}
