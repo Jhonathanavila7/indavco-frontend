@@ -22,6 +22,7 @@ api.interceptors.request.use(
 
 export const servicesAPI = {
   getAll: () => api.get('/services'),
+  getOne: (id) => api.get(`/services/${id}`),
   create: (data) => api.post('/services', data),
   update: (id, data) => api.put(`/services/${id}`, data),
   delete: (id) => api.delete(`/services/${id}`),
@@ -29,7 +30,7 @@ export const servicesAPI = {
 
 export const projectsAPI = {
   getAll: () => api.get('/projects'),
-  getOne: (id) => api.get(`/projects/${id}`),  // ← ESTA LÍNEA DEBE ESTAR
+  getOne: (id) => api.get(`/projects/${id}`),
   create: (data) => api.post('/projects', data),
   update: (id, data) => api.put(`/projects/${id}`, data),
   delete: (id) => api.delete(`/projects/${id}`),
@@ -37,6 +38,7 @@ export const projectsAPI = {
 
 export const clientsAPI = {
   getAll: () => api.get('/clients'),
+  getOne: (id) => api.get(`/clients/${id}`),
   create: (data) => api.post('/clients', data),
   update: (id, data) => api.put(`/clients/${id}`, data),
   delete: (id) => api.delete(`/clients/${id}`),
@@ -53,6 +55,7 @@ export const blogAPI = {
 
 export const corporatePlansAPI = {
   getAll: () => api.get('/corporate-plans'),
+  getOne: (id) => api.get(`/corporate-plans/${id}`),
   create: (data) => api.post('/corporate-plans', data),
   update: (id, data) => api.put(`/corporate-plans/${id}`, data),
   delete: (id) => api.delete(`/corporate-plans/${id}`),
